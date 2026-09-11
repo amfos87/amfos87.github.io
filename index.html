@@ -2,15 +2,663 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>AMFOS87 홈페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AMFOS87 // PLAYER PROFILE</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 170, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(150, 0, 255, 0.1), transparent 30%),
+                #05060a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* 배경 그리드 */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,255,170,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,170,0.035) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* 상단 메뉴 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 6, 10, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,255,170,0.15);
+            z-index: 1000;
+        }
+
+        .logo {
+            color: #00ffaa;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(0,255,170,0.7);
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 12px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ffaa;
+            text-shadow: 0 0 10px #00ffaa;
+        }
+
+        /* 메인 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 7% 70px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #00ffaa;
+            color: #00ffaa;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(0,255,170,0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 9vw, 100px);
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            color: white;
+            text-shadow:
+                0 0 10px #00ffaa,
+                0 0 30px rgba(0,255,170,0.4);
+        }
+
+        .hero h2 {
+            color: #8c8c9b;
+            font-size: clamp(13px, 2vw, 20px);
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            color: #aaa;
+            line-height: 1.9;
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 15px 30px;
+            color: #05060a;
+            background: #00ffaa;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            box-shadow: 0 0 25px rgba(0,255,170,0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 0 20px #00ffaa,
+                0 0 50px rgba(0,255,170,0.4);
+        }
+
+        /* 섹션 */
+        section {
+            padding: 100px 7%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            margin-bottom: 45px;
+        }
+
+        .section-title span {
+            color: #00ffaa;
+            font-size: 11px;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            margin-top: 10px;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        /* 자기소개 카드 */
+        .profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(15, 17, 25, 0.85);
+            border: 1px solid rgba(0,255,170,0.15);
+            padding: 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #00ffaa;
+            box-shadow: 0 0 15px #00ffaa;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(0,255,170,0.6);
+            box-shadow: 0 10px 40px rgba(0,255,170,0.08);
+        }
+
+        .card h3 {
+            color: #00ffaa;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #aaa;
+            line-height: 1.8;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 스탯 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            background: #0c0e14;
+            border: 1px solid #191d27;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        .stat .number {
+            color: #00ffaa;
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(0,255,170,0.5);
+        }
+
+        .stat .label {
+            margin-top: 10px;
+            color: #777;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* 게임 카드 */
+        .games {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .game {
+            min-height: 200px;
+            background:
+                linear-gradient(145deg, rgba(0,255,170,0.08), rgba(100,0,255,0.05)),
+                #0c0e14;
+            border: 1px solid #202530;
+            padding: 25px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .game:hover {
+            transform: scale(1.03);
+            border-color: #00ffaa;
+            box-shadow: 0 0 30px rgba(0,255,170,0.12);
+        }
+
+        .game .icon {
+            font-size: 45px;
+            margin-bottom: auto;
+        }
+
+        .game h3 {
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .game p {
+            color: #777;
+            font-size: 11px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 플레이 스타일 */
+        .bar-box {
+            margin-bottom: 25px;
+        }
+
+        .bar-title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            margin-bottom: 8px;
+            color: #aaa;
+        }
+
+        .bar {
+            height: 7px;
+            background: #171a21;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffaa, #7d5cff);
+            box-shadow: 0 0 12px #00ffaa;
+        }
+
+        /* 연락처 */
+        .contact {
+            text-align: center;
+            padding-bottom: 130px;
+        }
+
+        .contact h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #777;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 푸터 */
+        footer {
+            border-top: 1px solid rgba(0,255,170,0.1);
+            padding: 30px;
+            text-align: center;
+            color: #555;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* 모바일 */
+        @media (max-width: 700px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .profile {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .games {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .hero h1 {
+                letter-spacing: 4px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>안녕하세요!</h1>
-    <p>제 첫 번째 홈페이지입니다.</p>
 
-    <button onclick="alert('반갑습니다!')">
-        눌러보세요
-    </button>
+    <!-- =========================
+         상단 메뉴
+    ========================== -->
+
+    <header>
+        <div class="logo">AMFOS87.exe</div>
+
+        <nav>
+            <a href="#about">ABOUT</a>
+            <a href="#games">GAMES</a>
+            <a href="#stats">STATS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
+
+
+    <!-- =========================
+         메인 화면
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="status">
+                    ● PLAYER ONLINE
+                </div>
+
+                <h1>AMFOS87</h1>
+
+                <h2>GAMER // CREATOR // PLAYER</h2>
+
+                <p>
+                    안녕하세요! 저는 게임을 좋아하고
+                    다양한 게임을 플레이하는 사람입니다.
+                    <br>
+                    게임과 관련된 것들을 직접 만들어보고
+                    새로운 것을 배우는 것을 좋아합니다.
+                </p>
+
+                <a href="#about" class="button">
+                    ENTER PROFILE →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section id="about">
+
+            <div class="section-title">
+                <span>01 // PLAYER INFORMATION</span>
+                <h2>ABOUT ME</h2>
+            </div>
+
+            <div class="profile">
+
+                <div class="card">
+                    <h3>PLAYER NAME</h3>
+                    <p>
+                        AMFOS87
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>MAIN ROLE</h3>
+                    <p>
+                        GAMER / GAME ENTHUSIAST
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>PLAY STYLE</h3>
+                    <p>
+                        새로운 게임을 찾아보고
+                        직접 플레이하면서 게임의 시스템과
+                        재미있는 요소를 분석하는 것을 좋아합니다.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>MY GOAL</h3>
+                    <p>
+                        언젠가는 게임과 관련된
+                        재미있는 프로젝트를 직접 만들어보는 것이 목표입니다.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================== -->
+
+        <section id="stats">
+
+            <div class="section-title">
+                <span>02 // PLAYER DATA</span>
+                <h2>PLAYER STATS</h2>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="number">87</div>
+                    <div class="label">LEVEL</div>
+                </div>
+
+                <div class="stat">
+                    <div class="number">∞</div>
+                    <div class="label">PLAY TIME</div>
+                </div>
+
+                <div class="stat">
+                    <div class="number">99</div>
+                    <div class="label">PASSION</div>
+                </div>
+
+                <div class="stat">
+                    <div class="number">100</div>
+                    <div class="label">FUN</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             GAMES
+        ========================== -->
+
+        <section id="games">
+
+            <div class="section-title">
+                <span>03 // FAVORITE GAMES</span>
+                <h2>MY GAMES</h2>
+            </div>
+
+            <div class="games">
+
+                <div class="game">
+                    <div class="icon">⚔️</div>
+                    <h3>GAME #01</h3>
+                    <p>내가 좋아하는 게임을 적어주세요.</p>
+                </div>
+
+                <div class="game">
+                    <div class="icon">🎮</div>
+                    <h3>GAME #02</h3>
+                    <p>자주 플레이하는 게임을 적어주세요.</p>
+                </div>
+
+                <div class="game">
+                    <div class="icon">🚀</div>
+                    <h3>GAME #03</h3>
+                    <p>최근 재미있게 플레이한 게임.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PLAY STYLE
+        ========================== -->
+
+        <section>
+
+            <div class="section-title">
+                <span>04 // PLAYER SKILLS</span>
+                <h2>MY PLAY STYLE</h2>
+            </div>
+
+            <div class="card">
+
+                <div class="bar-box">
+
+                    <div class="bar-title">
+                        <span>GAME SENSE</span>
+                        <span>85%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" style="width:85%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="bar-box">
+
+                    <div class="bar-title">
+                        <span>STRATEGY</span>
+                        <span>75%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" style="width:75%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="bar-box">
+
+                    <div class="bar-title">
+                        <span>TEAMWORK</span>
+                        <span>90%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" style="width:90%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="bar-box">
+
+                    <div class="bar-title">
+                        <span>FUN</span>
+                        <span>100%</span>
+                    </div>
+
+                    <div class="bar">
+                        <div class="bar-fill" style="width:100%"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section id="contact" class="contact">
+
+            <div class="section-title">
+                <span>05 // CONNECTION</span>
+                <h2>CONTACT</h2>
+            </div>
+
+            <p>
+                함께 게임을 즐기거나 이야기하고 싶다면 연락해주세요!
+            </p>
+
+            <a href="mailto:your-email@example.com" class="button">
+                SEND MESSAGE
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+        AMFOS87 // PLAYER PROFILE
+        <br><br>
+        © 2026 AMFOS87. ALL RIGHTS RESERVED.
+    </footer>
+
+
 </body>
 </html>
+
