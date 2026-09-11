@@ -84,7 +84,7 @@
 
 
     .logo span {
-        color: #3b82f6;
+        color: #2563eb;
     }
 
 
@@ -365,52 +365,6 @@
 
 
     /* =========================
-       스탯
-    ========================== */
-
-    .stats {
-        display: grid;
-
-        grid-template-columns: repeat(4, 1fr);
-
-        gap: 15px;
-    }
-
-
-    .stat {
-        background: #ffffff;
-
-        border: 1px solid #dce1e7;
-
-        padding: 25px 15px;
-
-        text-align: center;
-
-        border-radius: 6px;
-    }
-
-
-    .stat .number {
-        color: #2563eb;
-
-        font-size: 30px;
-
-        font-weight: bold;
-    }
-
-
-    .stat .label {
-        margin-top: 10px;
-
-        color: #7b8491;
-
-        font-size: 10px;
-
-        letter-spacing: 2px;
-    }
-
-
-    /* =========================
        게임 카드
     ========================== */
 
@@ -501,48 +455,6 @@
 
 
     /* =========================
-       플레이 스타일
-    ========================== */
-
-    .bar-box {
-        margin-bottom: 25px;
-    }
-
-
-    .bar-title {
-        display: flex;
-
-        justify-content: space-between;
-
-        font-size: 11px;
-
-        margin-bottom: 8px;
-
-        color: #64748b;
-    }
-
-
-    .bar {
-        height: 7px;
-
-        background: #e5e7eb;
-
-        overflow: hidden;
-
-        border-radius: 10px;
-    }
-
-
-    .bar-fill {
-        height: 100%;
-
-        background: #2563eb;
-
-        border-radius: 10px;
-    }
-
-
-    /* =========================
        연락처
     ========================== */
 
@@ -624,11 +536,6 @@
         }
 
 
-        .stats {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-
         .games {
             grid-template-columns: 1fr;
         }
@@ -679,8 +586,6 @@
         <a href="#about">ABOUT</a>
 
         <a href="#games">GAMES</a>
-
-        <a href="#stats">STATS</a>
 
         <a href="#contact">CONTACT</a>
 
@@ -783,35 +688,6 @@
             <div class="card">
 
                 <h3>
-                    PLAY STYLE
-                </h3>
-
-                <p>
-                    다양한 게임을 플레이하면서
-                    게임의 시스템과 재미있는 요소를
-                    직접 경험하는 것을 좋아합니다.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
-                    MY GOAL
-                </h3>
-
-                <p>
-                    게임과 관련된 재미있는 프로젝트를
-                    직접 만들어보는 것이 목표입니다.
-                </p>
-
-            </div>
-
-
-            <div class="card">
-
-                <h3>
                     DISCORD
                 </h3>
 
@@ -891,83 +767,6 @@
 
 
     <!-- =========================
-         STATS
-    ========================== -->
-
-    <section id="stats">
-
-        <div class="section-title">
-
-            <span>
-                02 // PLAYER DATA
-            </span>
-
-            <h2>
-                PLAYER STATS
-            </h2>
-
-        </div>
-
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="number">
-                    87
-                </div>
-
-                <div class="label">
-                    LEVEL
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="number">
-                    ∞
-                </div>
-
-                <div class="label">
-                    PLAY TIME
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="number">
-                    99
-                </div>
-
-                <div class="label">
-                    PASSION
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div class="number">
-                    100
-                </div>
-
-                <div class="label">
-                    FUN
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
          GAMES
     ========================== -->
 
@@ -976,7 +775,7 @@
         <div class="section-title">
 
             <span>
-                03 // FAVORITE GAMES
+                02 // FAVORITE GAMES
             </span>
 
             <h2>
@@ -1082,141 +881,6 @@
 
 
     <!-- =========================
-         PLAY STYLE
-    ========================== -->
-
-    <section>
-
-        <div class="section-title">
-
-            <span>
-                04 // PLAYER SKILLS
-            </span>
-
-            <h2>
-                MY PLAY STYLE
-            </h2>
-
-        </div>
-
-
-        <div class="card">
-
-
-            <div class="bar-box">
-
-                <div class="bar-title">
-
-                    <span>
-                        GAME SENSE
-                    </span>
-
-                    <span>
-                        85%
-                    </span>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width: 85%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="bar-box">
-
-                <div class="bar-title">
-
-                    <span>
-                        STRATEGY
-                    </span>
-
-                    <span>
-                        75%
-                    </span>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width: 75%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="bar-box">
-
-                <div class="bar-title">
-
-                    <span>
-                        TEAMWORK
-                    </span>
-
-                    <span>
-                        90%
-                    </span>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width: 90%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-            <div class="bar-box">
-
-                <div class="bar-title">
-
-                    <span>
-                        FUN
-                    </span>
-
-                    <span>
-                        100%
-                    </span>
-
-                </div>
-
-
-                <div class="bar">
-
-                    <div
-                        class="bar-fill"
-                        style="width: 100%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
          CONTACT
     ========================== -->
 
@@ -1228,7 +892,7 @@
         <div class="section-title">
 
             <span>
-                05 // CONNECTION
+                03 // CONNECTION
             </span>
 
             <h2>
@@ -1346,3 +1010,4 @@
 
 </body>
 </html>
+
